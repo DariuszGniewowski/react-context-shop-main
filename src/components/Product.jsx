@@ -10,7 +10,7 @@ export const Product = ({
   description,
 
 }) => {
-  const { onAddItemToCart } = useContext(CartContext);
+  const { addItemToCart } = useContext(CartContext);
   return (
     <article className="product">
       <img src={image} alt="foto motocykla" />
@@ -21,7 +21,7 @@ export const Product = ({
           <p>{description}</p>
         </div>
         <p className="product-actions">
-          <button onClick={() => onAddItemToCart(id)}>Dodaj do koszyka</button>
+          <button onClick={() => addItemToCart(id)}>Dodaj do koszyka</button>
         </p>
       </div>
     </article>
