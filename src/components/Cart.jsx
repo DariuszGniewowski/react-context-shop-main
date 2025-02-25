@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { CartContext } from "../store/shopping-cart-context";
 import { useContext } from "react";
 
-export const Cart = ({ onUpdateItemQuantity }) => {
+export const Cart = () => {
   const cartContext = useContext(CartContext);
 
   const totalPrice = cartContext.items.reduce(
@@ -24,11 +24,11 @@ export const Cart = ({ onUpdateItemQuantity }) => {
                   <span>{item.price} ZŁ</span>
                 </div>
                 <div className="cart-item-actions">
-                  <button onClick={() => onUpdateItemQuantity(item.id, -1)}>
+                  <button onClick={() => cartContext.updateItemQuantity(item.id, -1)}>
                     -
                   </button>
                   <span>{item.quantity}</span>
-                  <button onClick={() => onUpdateItemQuantity(item.id, 1)}>
+                  <button onClick={() => cartContext.updateItemQuantity(item.id, 1)}>
                     +
                   </button>
                 </div>
@@ -46,5 +46,4 @@ export const Cart = ({ onUpdateItemQuantity }) => {
 
 Cart.propTypes = {
   items: PropTypes.array,
-  onUpdateItemQuantity: PropTypes.func,
 };

@@ -1,11 +1,14 @@
 import { useRef } from "react";
 import { CartModal } from "./CartModal";
-import PropTypes from "prop-types";
+import { useContext } from "react";
+import { CartContext } from "../store/shopping-cart-context";
 
-export const Header = ({ cart, onUpdateCartItemQuantity }) => {
+export const Header = () => {
+
+  const cartCtx = useContext(CartContext);
   const modal = useRef();
 
-  const cartQuantity = cart?.items?.length;
+  const cartQuantity = cartCtx?.items?.length;
 
   function handleOpenCartClick() {
     modal.current.open();
@@ -26,10 +29,9 @@ export const Header = ({ cart, onUpdateCartItemQuantity }) => {
     <>
       <CartModal
         ref={modal}
-        cartItems={cart?.items}
         title="Twój koszyk"
         actions={modalActions}
-        onUpdateCartItemQuantity={onUpdateCartItemQuantity}
+
       />
       <header id="main-header">
         <div id="main-title">
@@ -43,9 +45,3 @@ export const Header = ({ cart, onUpdateCartItemQuantity }) => {
   );
 };
 
-Header.propTypes = {
-  cart: {
-    items: PropTypes.array,
-  },
-  onUpdateCartItemQuantity: PropTypes.func,
-};
